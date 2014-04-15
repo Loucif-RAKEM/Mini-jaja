@@ -1,0 +1,15 @@
+class test {
+	main {
+		int x;
+		boolean test;
+
+		boolean y = true;
+		int z = 1;
+
+		
+
+		test=true;
+		x=0;
+
+	}
+}

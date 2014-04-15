@@ -1,0 +1,12 @@
+class DEBUG{
+
+	int deuxFois(int x){
+		int x2 = x * 2;
+		return x2;	
+};
+
+	main{
+		int vingt = deuxFois(10);	
+}
+
+}

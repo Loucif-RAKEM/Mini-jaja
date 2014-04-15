@@ -1,0 +1,21 @@
+class test {
+  	final int longueur =1 ;
+	boolean glob;
+	int w;	
+	main {
+		int x;
+		boolean y = false || true;
+		boolean d = true || false;
+		boolean e = true || true;
+		boolean f = false || false;
+		int z = 1+x;
+		boolean test;
+		test=(true && true) || false;
+
+		x=1;
+
+		longueur=((5 + 6 -3)*x)/longueur;
+		glob=true && test;
+		w=(7 - 4 + 9) / (13 * x);
+	}
+}

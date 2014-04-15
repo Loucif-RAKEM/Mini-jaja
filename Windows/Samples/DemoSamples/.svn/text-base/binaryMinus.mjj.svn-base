@@ -1,0 +1,12 @@
+class BinaryMinusNodeTest {
+
+    main {
+        int three1 = 3;
+        int four1 = 4;
+        int minusone1 = 3 - 4;
+        int minusone2 = 3 - four1;
+        int minusone3 = three1 - 4;
+        int minusone4 = three1 - four1;
+    }
+
+}

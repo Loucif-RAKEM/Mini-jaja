@@ -1,0 +1,6 @@
+class test {
+	main {
+		int tab[5];
+		tab[0]=1;
+	}
+}

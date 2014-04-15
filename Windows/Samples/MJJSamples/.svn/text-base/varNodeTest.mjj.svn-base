@@ -1,0 +1,26 @@
+class VarNodeTest {
+
+    final int fzero1;
+    final int fzero2 = 0;
+    final int fzero3 = fzero2;
+    final int one1 = 1;
+    final int one2 = one1;
+    final boolean ffaux1;
+    final boolean ffaux2 = false;
+    final boolean ffaux3 = ffaux2;
+    final boolean fvrai1 = true;
+    final boolean fvrai2 = fvrai1;
+
+    main {
+        int zero1;
+        int zero2 = 0;
+        int zero3 = zero2;
+        int one1 = 1;
+        int one2 = one1;
+        boolean ffaux4;
+        boolean ffaux5 = false;
+        boolean ffaux6 = ffaux5;
+        boolean fvrai1 = true;
+        boolean fvrai2 = fvrai1;
+    }
+}

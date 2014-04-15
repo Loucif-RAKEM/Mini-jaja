@@ -1,0 +1,16 @@
+class test {
+    main {
+        int x=3;
+        int y = 0;
+        
+        while(x>1) {
+            y++;
+            
+            if(x == 2) {
+                y = y + 2;
+            };
+            
+            x = x - 1;
+        };
+    }
+}

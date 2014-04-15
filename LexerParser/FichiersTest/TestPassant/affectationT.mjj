@@ -1,0 +1,16 @@
+class test {
+    main {
+        int x;
+        int tab1[2];
+        int tab2[x];
+        
+        tab1[1] = 6;
+        tab1[x-1] = 7;
+        x = 5;
+        
+        x+=3;
+        tab1[2*x]+=10;
+        
+        x = tab2[1] + 1;
+    }
+}

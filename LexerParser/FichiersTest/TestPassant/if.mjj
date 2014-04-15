@@ -1,0 +1,22 @@
+class test {
+	main {
+		int x;
+		int y;
+		int z;
+		if(x>0){ 
+			x=3;
+			y=5;
+			z=x+y;
+		}; 
+		if(x==5){ 
+				  
+		}; 
+		if(x==0){ 
+				  
+		}; 
+		if(!(x==0)){ 
+				  
+		}; 
+
+	}
+}

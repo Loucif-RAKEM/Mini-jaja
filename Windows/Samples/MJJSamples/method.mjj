@@ -1,0 +1,12 @@
+class test{
+    int fact(int a, int b){
+        return a*b;
+    };
+    
+    
+    main{
+    
+    int x = fact(1,2);
+    
+    }
+}

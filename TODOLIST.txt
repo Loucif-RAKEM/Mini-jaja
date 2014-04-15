@@ -1,0 +1,22 @@
+TO DO LIST :
+
+Objectifs
+	_Parser
+	_lexer
+	_IHM
+	_Controleur de types
+	_Tests
+
+Stories effectuees
+	_Parser
+	_lexer
+	_IHM
+	_Tests
+	_ASA
+	
+Démo
+
+FeedBack
+Calcul vélocité
+Ajuster prévisions
+

@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 38
+/svn/m1_comp6/!svn/ver/208/LexerParser
+END
+parser.y
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svn/m1_comp6/!svn/ver/56/LexerParser/parser.y
+END
+main.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svn/m1_comp6/!svn/ver/61/LexerParser/main.cpp
+END
+lexer.l
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/m1_comp6/!svn/ver/56/LexerParser/lexer.l
+END
+exeTestsPassants.sh
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/m1_comp6/!svn/ver/104/LexerParser/exeTestsPassants.sh
+END
+makefile
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svn/m1_comp6/!svn/ver/59/LexerParser/makefile
+END

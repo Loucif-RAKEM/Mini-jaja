@@ -1,0 +1,14 @@
+class PlusNodeTest {
+
+    main {
+        int three1 = 3;
+        int four1 = 4;
+        int seven1 = 3 + 4;
+        int seven2 = 3 + four1;
+        int seven3 = three1 + 4;
+        int seven4 = three1 + four1;
+        
+        four1 = four1 + three1 + seven1;
+    }
+
+}

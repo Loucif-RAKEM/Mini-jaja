@@ -1,0 +1,31 @@
+class GreaterThanNodeTest {
+
+    final int four = 4;
+    final int ten = 10;
+    final boolean ffaux1 = 0 > 1;
+    final boolean ffaux2 = -1 > 2;
+    final boolean ffaux3 = 2 > four;
+    final boolean ffaux4 = four > 6;
+    final boolean ffaux5 = four > ten;
+    final boolean ffaux6 = ten > ten;
+    final boolean fvrai1 = 0 > -2;
+    final boolean fvrai2 = 3 > 2;
+    final boolean fvrai3 = 5 > four;
+    final boolean fvrai4 = four > 2;
+    final boolean fvrai5 = ten > four;
+
+    main {
+        int seven = 7;
+        int height = 8;
+        boolean faux1 = 0 > 1;
+        boolean faux2 = 2 > 3;
+        boolean faux3 = 6 > seven;
+        boolean faux4 = seven > 10;
+        boolean faux5 = seven > height;
+        boolean faux6 = seven > seven;
+        boolean vrai1 = 0 > -6;
+        boolean vrai2 = 3 > 0;
+        boolean vrai3 = 8 > seven;
+        boolean vrai4 = seven > 6;
+    }
+}

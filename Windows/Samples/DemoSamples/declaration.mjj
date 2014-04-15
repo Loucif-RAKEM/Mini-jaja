@@ -1,0 +1,13 @@
+class test {
+  	final int longueur=20;
+	int glob;
+	int glob2 = 3;
+	boolean glob3;
+	
+	main {
+		int x;
+		boolean y = true;
+		int z = 1;
+		boolean test;
+	}
+}

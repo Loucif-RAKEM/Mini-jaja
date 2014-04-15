@@ -1,0 +1,524 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>943</width>
+    <height>602</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
+   <layout class="QGridLayout" name="gridLayout_2" rowstretch="0,0,0">
+    <property name="sizeConstraint">
+     <enum>QLayout::SetNoConstraint</enum>
+    </property>
+    <property name="margin">
+     <number>6</number>
+    </property>
+    <property name="spacing">
+     <number>6</number>
+    </property>
+    <item row="1" column="0" rowspan="2">
+     <widget class="QTreeView" name="fileTree">
+      <property name="maximumSize">
+       <size>
+        <width>200</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background: white; color:black</string>
+      </property>
+      <property name="showDropIndicator" stdset="0">
+       <bool>false</bool>
+      </property>
+      <property name="dragEnabled">
+       <bool>true</bool>
+      </property>
+      <property name="dragDropMode">
+       <enum>QAbstractItemView::DragDrop</enum>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="1">
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="tabPosition">
+       <enum>QTabWidget::South</enum>
+      </property>
+      <property name="tabShape">
+       <enum>QTabWidget::Rounded</enum>
+      </property>
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="tab1">
+       <attribute name="title">
+        <string>MiniJaja</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout">
+        <property name="spacing">
+         <number>2</number>
+        </property>
+        <property name="margin">
+         <number>2</number>
+        </property>
+        <item>
+         <widget class="CodeEditor" name="textZone">
+          <property name="enabled">
+           <bool>true</bool>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background: white; color: black;</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tabJajaCode">
+       <attribute name="title">
+        <string>JajaCode</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_2">
+        <property name="spacing">
+         <number>2</number>
+        </property>
+        <property name="margin">
+         <number>2</number>
+        </property>
+        <item>
+         <widget class="CodeEditor" name="textZone2">
+          <property name="styleSheet">
+           <string notr="true">background: white; color: black;</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+    <item row="2" column="1">
+     <widget class="QTextBrowser" name="console">
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>150</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background: black;
+color: white;
+</string>
+      </property>
+      <property name="html">
+       <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Sans Serif'; font-size:9pt; color:#11ff00;&quot;&gt;[Console]&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="2" rowspan="2">
+     <widget class="QGroupBox" name="groupBox">
+      <property name="minimumSize">
+       <size>
+        <width>200</width>
+        <height>250</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>300</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="title">
+       <string>Affichage de la pile</string>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_3">
+       <property name="spacing">
+        <number>2</number>
+       </property>
+       <property name="margin">
+        <number>2</number>
+       </property>
+       <item>
+        <widget class="QTextEdit" name="textMemo">
+         <property name="styleSheet">
+          <string notr="true">all{
+background-color:white;
+}
+.td{
+border-color: red;
+}</string>
+         </property>
+         <property name="html">
+          <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;table border=&quot;1&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px;&quot; width=&quot;100%&quot; cellspacing=&quot;2&quot; cellpadding=&quot;0&quot;&gt;
+&lt;tr&gt;
+&lt;td&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Sans Serif'; font-size:8pt;&quot;&gt;sommet de pile &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Sans Serif'; font-size:8pt;&quot;&gt;sommet de pile-1 &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Sans Serif'; font-size:8pt;&quot;&gt;sommet de pile-2 &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>943</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menufichier">
+    <property name="title">
+     <string>Fichier</string>
+    </property>
+    <addaction name="actionOuvrir"/>
+    <addaction name="actionNouveau_Fichier"/>
+    <addaction name="actionSauvegarder"/>
+    <addaction name="actionSauvegarder_sous"/>
+    <addaction name="separator"/>
+    <addaction name="actionFermer"/>
+    <addaction name="separator"/>
+    <addaction name="actionQuitter"/>
+   </widget>
+   <widget class="QMenu" name="menuEdition">
+    <property name="title">
+     <string>Edition</string>
+    </property>
+    <addaction name="actionAnnuler"/>
+    <addaction name="actionRestaurer"/>
+   </widget>
+   <widget class="QMenu" name="menuCompiler">
+    <property name="title">
+     <string>Compiler</string>
+    </property>
+    <addaction name="actionCompiler"/>
+    <addaction name="separator"/>
+    <addaction name="actionExecuter"/>
+    <addaction name="ExecutePasAPasMJJ"/>
+    <addaction name="actionArretMJJ"/>
+    <addaction name="separator"/>
+    <addaction name="actionExecuter_JJC"/>
+    <addaction name="ExecutePasAPasJJC"/>
+    <addaction name="actionArretJJC"/>
+   </widget>
+   <widget class="QMenu" name="menuFenetre">
+    <property name="title">
+     <string>Fenetre</string>
+    </property>
+    <widget class="QMenu" name="menuRedimmensionner">
+     <property name="title">
+      <string>Redimmensionner</string>
+     </property>
+     <property name="icon">
+      <iconset resource="../resources/resource.qrc">
+       <normaloff>:/new/icons/1386824597_layer_resize.png</normaloff>:/new/icons/1386824597_layer_resize.png</iconset>
+     </property>
+     <addaction name="action800x600"/>
+     <addaction name="action1080x720"/>
+    </widget>
+    <addaction name="menuRedimmensionner"/>
+   </widget>
+   <widget class="QMenu" name="menuAide">
+    <property name="title">
+     <string>Aide</string>
+    </property>
+    <addaction name="actionA_propos"/>
+   </widget>
+   <addaction name="menufichier"/>
+   <addaction name="menuEdition"/>
+   <addaction name="menuCompiler"/>
+   <addaction name="menuFenetre"/>
+   <addaction name="menuAide"/>
+  </widget>
+  <widget class="QToolBar" name="mainToolBar">
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionCompiler"/>
+   <addaction name="separator"/>
+   <addaction name="actionExecuter"/>
+   <addaction name="ExecutePasAPasMJJ"/>
+   <addaction name="actionArretMJJ"/>
+   <addaction name="separator"/>
+   <addaction name="actionExecuter_JJC"/>
+   <addaction name="ExecutePasAPasJJC"/>
+   <addaction name="actionArretJJC"/>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+  <action name="actionCompiler">
+   <property name="icon">
+    <iconset resource="../resources/resource.qrc">
+     <normaloff>:/new/icons/1386190814_compile.png</normaloff>:/new/icons/1386190814_compile.png</iconset>
+   </property>
+   <property name="text">
+    <string>Compiler</string>
+   </property>
+   <property name="toolTip">
+    <string>Lancer la compilation</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+B</string>
+   </property>
+  </action>
+  <action name="actionExecuter">
+   <property name="icon">
+    <iconset resource="../resources/resource.qrc">
+     <normaloff>:/new/icons/1386189852_Play2Hot.png</normaloff>:/new/icons/1386189852_Play2Hot.png</iconset>
+   </property>
+   <property name="text">
+    <string>Executer MJJ</string>
+   </property>
+   <property name="toolTip">
+    <string>Lancer l'éxecution</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+R</string>
+   </property>
+  </action>
+  <action name="actionOuvrir">
+   <property name="icon">
+    <iconset resource="../resources/resource.qrc">
+     <normaloff>:/new/icons/1386824145_Open.png</normaloff>:/new/icons/1386824145_Open.png</iconset>
+   </property>
+   <property name="text">
+    <string>Ouvrir</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
+   </property>
+  </action>
+  <action name="actionSauvegarder">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../resources/resource.qrc">
+     <normaloff>:/new/icons/1386824052_floppy_disk_save.png</normaloff>:/new/icons/1386824052_floppy_disk_save.png</iconset>
+   </property>
+   <property name="text">
+    <string>Sauvegarder</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
+   </property>
+  </action>
+  <action name="actionQuitter">
+   <property name="icon">
+    <iconset resource="../resources/resource.qrc">
+     <normaloff>:/new/icons/1386824183_exit.png</normaloff>:/new/icons/1386824183_exit.png</iconset>
+   </property>
+   <property name="text">
+    <string>Quitter</string>
+   </property>
+  </action>
+  <action name="actionFermer">
+   <property name="icon">
+    <iconset resource="../resources/resource.qrc">
+     <normaloff>:/new/icons/1386824175_cross-24.png</normaloff>:/new/icons/1386824175_cross-24.png</iconset>
+   </property>
+   <property name="text">
+    <string>Fermer</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+X</string>
+   </property>
+  </action>
+  <action name="actionSauvegarder_sous">
+   <property name="icon">
+    <iconset resource="../resources/resource.qrc">
+     <normaloff>:/new/icons/1386824097_filesaveas.png</normaloff>:/new/icons/1386824097_filesaveas.png</iconset>
+   </property>
+   <property name="text">
+    <string>Sauvegarder sous ...</string>
+   </property>
+   <property name="toolTip">
+    <string>Sauvegarder sous</string>
+   </property>
+  </action>
+  <action name="actionNouveau_Fichier">
+   <property name="icon">
+    <iconset resource="../resources/resource.qrc">
+     <normaloff>:/new/icons/1386824125_document-new.png</normaloff>:/new/icons/1386824125_document-new.png</iconset>
+   </property>
+   <property name="text">
+    <string>Nouveau Fichier</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+N</string>
+   </property>
+  </action>
+  <action name="actionExecuter_JJC">
+   <property name="icon">
+    <iconset resource="../resources/resource.qrc">
+     <normaloff>:/new/icons/1386189852_Play1Hot.png</normaloff>:/new/icons/1386189852_Play1Hot.png</iconset>
+   </property>
+   <property name="text">
+    <string>Executer JJC</string>
+   </property>
+   <property name="toolTip">
+    <string>Lancer l'execution du JaJaCode</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+T</string>
+   </property>
+  </action>
+  <action name="ExecutePasAPasMJJ">
+   <property name="icon">
+    <iconset resource="../resources/resource.qrc">
+     <normaloff>:/new/icons/1386189806_step-forward2.png</normaloff>:/new/icons/1386189806_step-forward2.png</iconset>
+   </property>
+   <property name="text">
+    <string>pas a pas MJJ</string>
+   </property>
+   <property name="toolTip">
+    <string>Lancer l'execution pas a pas du MiniJaJa</string>
+   </property>
+  </action>
+  <action name="ExecutePasAPasJJC">
+   <property name="icon">
+    <iconset resource="../resources/resource.qrc">
+     <normaloff>:/new/icons/1386189806_step-forward.png</normaloff>:/new/icons/1386189806_step-forward.png</iconset>
+   </property>
+   <property name="text">
+    <string>pas a pas JJC</string>
+   </property>
+   <property name="toolTip">
+    <string>Lancer l'execution pas a pas du JaJaCode</string>
+   </property>
+  </action>
+  <action name="actionArretMJJ">
+   <property name="icon">
+    <iconset resource="../resources/resource.qrc">
+     <normaloff>:/new/icons/1386189589_gtk-stop.png</normaloff>:/new/icons/1386189589_gtk-stop.png</iconset>
+   </property>
+   <property name="text">
+    <string>ArretMJJ</string>
+   </property>
+   <property name="toolTip">
+    <string>Arrete l'execution du MiniJaJa</string>
+   </property>
+  </action>
+  <action name="actionArretJJC">
+   <property name="icon">
+    <iconset resource="../resources/resource.qrc">
+     <normaloff>:/new/icons/1386189589_gtk-stop.png</normaloff>:/new/icons/1386189589_gtk-stop.png</iconset>
+   </property>
+   <property name="text">
+    <string>ArretJJC</string>
+   </property>
+   <property name="toolTip">
+    <string>Arrete l'execution du JaJaCode</string>
+   </property>
+  </action>
+  <action name="actionAnnuler">
+   <property name="icon">
+    <iconset resource="../resources/resource.qrc">
+     <normaloff>:/new/icons/1386824269_Undo.png</normaloff>:/new/icons/1386824269_Undo.png</iconset>
+   </property>
+   <property name="text">
+    <string>Annuler</string>
+   </property>
+  </action>
+  <action name="actionRestaurer">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../resources/resource.qrc">
+     <normaloff>:/new/icons/1386824300_Redo.png</normaloff>:/new/icons/1386824300_Redo.png</iconset>
+   </property>
+   <property name="text">
+    <string>Restaurer</string>
+   </property>
+  </action>
+  <action name="actionCompiler_2">
+   <property name="text">
+    <string>Compiler</string>
+   </property>
+  </action>
+  <action name="actionInterpreter_le_MiniJaJa">
+   <property name="text">
+    <string>Interpreter le MiniJaJa</string>
+   </property>
+  </action>
+  <action name="actionInterpreter_JaJaCode">
+   <property name="text">
+    <string>Interpreter JaJaCode</string>
+   </property>
+  </action>
+  <action name="actionA_propos">
+   <property name="icon">
+    <iconset resource="../resources/resource.qrc">
+     <normaloff>:/new/icons/1386824446_Information.png</normaloff>:/new/icons/1386824446_Information.png</iconset>
+   </property>
+   <property name="text">
+    <string>A propos</string>
+   </property>
+  </action>
+  <action name="action800x600">
+   <property name="icon">
+    <iconset resource="../resources/resource.qrc">
+     <normaloff>:/new/icons/1386824597_layer_resize.png</normaloff>:/new/icons/1386824597_layer_resize.png</iconset>
+   </property>
+   <property name="text">
+    <string>800x600</string>
+   </property>
+  </action>
+  <action name="action1080x720">
+   <property name="icon">
+    <iconset resource="../resources/resource.qrc">
+     <normaloff>:/new/icons/1386824597_layer_resize.png</normaloff>:/new/icons/1386824597_layer_resize.png</iconset>
+   </property>
+   <property name="text">
+    <string>1080x720</string>
+   </property>
+  </action>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>CodeEditor</class>
+   <extends>QPlainTextEdit</extends>
+   <header>codeeditor.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources>
+  <include location="../resources/resource.qrc"/>
+ </resources>
+ <connections/>
+</ui>

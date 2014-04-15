@@ -1,0 +1,16 @@
+class test {	
+	main {
+		int x;
+		int y=1;
+		int z=0;
+		x=0;
+		x=2+3;
+		x=2-3;
+		y=x/2;
+		z=x*y;
+		x=1 && 1;
+		y= x || z;
+		z= x ==1;
+		x = y>2;
+	}
+}

@@ -1,0 +1,24 @@
+class test {
+	int methTest(int y){
+		return methTest(y);
+	};
+	void methTest2(int x, int y){
+		x++;
+		y=y-1;
+	};
+	int methTest3(){
+		return 3;
+	};
+    main {
+        int x=3;
+        int y = 0;
+        
+        while(x>1) {
+            y++;
+            x = x - 1;
+	    methTest(-5);
+	    methTest2(1, 4);
+	    methTest3(3, 6);
+        };
+    }
+}

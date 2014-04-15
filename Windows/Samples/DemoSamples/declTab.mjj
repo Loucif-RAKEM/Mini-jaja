@@ -1,0 +1,9 @@
+class test {	
+	main {
+		int tab[4];
+		int tab1[155];
+		int tab3[3*5];
+		tab[0] = 10;	
+		
+	}
+}

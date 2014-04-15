@@ -1,0 +1,9 @@
+class test {
+	main {
+		int x;
+		if(true){ 
+			x++;  
+		}; 
+
+	}	
+}

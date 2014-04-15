@@ -1,0 +1,26 @@
+class test {
+	main {
+
+		int tab[5];
+		boolean tabBool[5];
+
+		if(x>0){ 
+				  
+		}; 
+		if(x==0){ 
+				  
+		}; 
+		if(x!=0){ 
+				  
+		}; 
+		if(!(x==0)){ 
+				  
+		}; 
+		if(tab[2]==1){ 
+				  
+		};
+		if(tabBool[2]){ 
+				  
+		};
+	}
+}

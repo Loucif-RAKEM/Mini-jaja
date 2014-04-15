@@ -1,0 +1,18 @@
+class test {
+  	final int longueur;
+	boolean glob;
+	int w;	
+	main {
+		int x;
+		boolean y = true;
+		int z = 1;
+		boolean test;
+		test=true;
+
+		x=0;
+
+		longueur=5;
+		glob=true;
+		w=7;
+	}
+}

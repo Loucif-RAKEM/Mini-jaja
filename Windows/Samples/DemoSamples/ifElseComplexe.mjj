@@ -1,0 +1,27 @@
+class test {
+    main {
+        int x[7];
+        int y = 0;
+        if(x[3]==0){
+		if(x[8]==x[1]){
+			y++;
+			if(x && y){
+				x++;
+			}else{
+				y++;
+			};
+		};
+		x=125;
+	}else{
+		if(y == x){
+			x++;
+		};
+		if(x==y){
+			y++;
+			x++;
+		}else{
+			y++;
+		};
+	};
+    }
+}

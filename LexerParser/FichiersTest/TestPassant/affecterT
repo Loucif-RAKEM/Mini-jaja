@@ -1,0 +1,18 @@
+class test {
+	int glob[3];
+	boolean globale[5];
+	main {
+		int n=5;
+		int x[n];
+		boolean test [n];
+
+		test[0]=true;
+		test[1]=false;
+		x[3]=0;
+		x[2]=1;
+
+		glob[2]=5;
+		globale[2]=true;
+
+	}
+}

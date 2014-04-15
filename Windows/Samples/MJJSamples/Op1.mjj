@@ -1,0 +1,11 @@
+class test {	
+	main {
+		int x;
+		int y=-1;
+		int z=0;
+		x=-1;
+		y=!z;
+		
+		x=!y && x;
+	}
+}

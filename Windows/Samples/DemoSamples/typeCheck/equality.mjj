@@ -1,0 +1,66 @@
+class EqualityNodeTest {
+
+    final int four = 4;
+    final int ten = 10;
+    final boolean ffaux1 = 0 == 1;
+    final boolean ffaux2 = 3 == 2;
+    final boolean ffaux3 = 6 == four;
+    final boolean ffaux4 = four == 6;
+    final boolean ffaux5 = four == ten;
+    final boolean ffaux6 = ten == four;
+    final boolean ffaux7 = false == true;
+    final boolean ffaux8 = true == false;
+    final boolean ffaux9 = faux1 == true;
+    final boolean ffaux10 = true == ffaux2;
+    final boolean fvrai1 = 0 == 0;
+    final boolean fvrai2 = 3 == 3;
+    final boolean fvrai3 = 4 == four;
+    final boolean fvrai4 = four == 4;
+    final boolean fvrai5 = four == four;
+    final boolean fvrai6 = true == true;
+    final boolean fvrai7 = true == fvrai1;
+    final boolean fvrai8 = fvrai1 == fvrai2;
+    final boolean fvrai9 = 1 == fvrai2;
+    final boolean fvrai10 = fvrai2 == 1;
+    final boolean fvrai11 = 1 == 1;
+    final boolean fvrai11 = 0 == 0;
+    final boolean ffaux11 = ffaux1 == fvrai1;
+    final boolean ffaux12 = fvrai1 == ffaux1;
+    final boolean ffaux13 = 0 == fvrai1;
+    final boolean ffaux14 = 1 == ffaux1;
+    final boolean ffaux15 = 1 == 0;
+    final boolean ffaux16 = 0 == 1;
+
+    main {
+        int seven = 7;
+        int height = 8;
+        boolean faux1 = 0 == 1;
+        boolean faux2 = 3 == 2;
+        boolean faux3 = 6 == seven;
+        boolean faux4 = seven == 6;
+        boolean faux5 = seven == height;
+        boolean faux6 = height == seven;
+        boolean faux7 = false == true;
+        boolean faux8 = true == false;
+        boolean faux9 = faux1 == true;
+        boolean faux10 = true == faux2;
+        boolean vrai1 = 0 == 0;
+        boolean vrai2 = 3 == 3;
+        boolean vrai3 = 7 == seven;
+        boolean vrai4 = seven == 7;
+        boolean vrai5 = seven == seven;
+        boolean vrai6 = true == true;
+        boolean vrai7 = true == vrai1;
+        boolean vrai8 = vrai1 == vrai2;
+        boolean vrai9 = 1 == vrai2;
+        boolean vrai10 = vrai2 == 1;
+        boolean vrai11 = 1 == 1;
+        boolean vrai11 = 0 == 0;
+        boolean faux11 = faux1 == vrai1;
+        boolean faux12 = vrai1 == faux1;
+        boolean faux13 = 0 == vrai1;
+        boolean faux14 = 1 == faux1;
+        boolean faux15 = 1 == 0;
+        boolean faux16 = 0 == 1;
+    }
+}
