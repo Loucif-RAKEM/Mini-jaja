@@ -1,0 +1,16 @@
+class UnaryMinusNodeTest {
+
+    main {
+        int zero1 = 0;
+        int one1 = 1;
+        int one2 = one1;
+        int minusTwo1 = -2;
+        int minusZero1 = -0;
+        int minusOne1 = -1;
+        int minusOne2 = -one1;
+        int minusOne3 = -one2;
+        int two1 = -(-2);
+        int two2 = -minusTwo1;
+        int two3 = -(-(two2));
+    }
+}

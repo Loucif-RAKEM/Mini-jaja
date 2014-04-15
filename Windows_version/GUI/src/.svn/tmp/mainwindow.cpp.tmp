@@ -1,0 +1,421 @@
+#include <stdlib.h>
+#include <cstdio>
+#include <iostream>
+#include <fstream>
+#include "mainwindow.h"
+#include "ui_mainwindow.h"
+#include "AbstractSyntaxTree.h"
+#include "MJJProgram.h"
+#include "JJCProgram.h"
+#include "Interpreter.h"
+#include "Compiler.h"
+#include "TypeChecker.h"
+#include "LinkedList.h"
+#include "Node.h"
+
+extern "C" int yyparse();
+extern "C++" void yyerror();
+extern "C" FILE *yyin;
+extern "C" const char* yytext;
+extern "C" int yydebug;
+
+using namespace std;
+
+MainWindow::MainWindow(QWidget *parent) :
+    QMainWindow(parent),
+    ui(new Ui::MainWindow)
+{
+    ui->setupUi(this);
+    ui->tabWidget->setCurrentIndex(0);
+
+    openedFile = new QFile();
+    fileInfo = new QFileInfo();
+
+    fileModel = new QDirModel(this);
+    fileModel->setSorting(QDir::DirsFirst | QDir::IgnoreCase | QDir::Name);
+
+    liste = new LinkedList<QPair<Node*, int> >();
+    mjjStep = 0;
+    jjcFlag = 0;
+    setWindowTitle("Compilateur MiniJaJa");
+}
+
+MainWindow::~MainWindow()
+{
+    openedFile->close();
+    delete ui;
+    delete openedFile;
+    delete fileInfo;
+    delete fileModel;
+}
+
+void MainWindow::readFile(QString fileName)
+{
+    if(openedFile->isOpen()) openedFile->close();
+
+    openedFile->setFileName(fileName);
+    openedFile->open(QIODevice::ReadWrite | QIODevice::Text);
+    ui->console->append("Ouverture du fichier " + fileInfo->fileName());
+
+    QTextStream readFile(openedFile);
+    //ui->textZone->setText(readFile.readAll());
+    ui->textZone->setPlainText(readFile.readAll());
+}
+
+void MainWindow::setTreeView()
+{
+}
+
+void MainWindow::on_fileTree_doubleClicked(const QModelIndex &index)
+{
+}
+
+void MainWindow::on_actionOuvrir_triggered()
+{
+    if(openedFile->isOpen()) {
+        openedFile->close();
+    }
+
+    QFileDialog dialog(this);
+    dialog.setFileMode(QFileDialog::AnyFile);
+    dialog.setAcceptMode(QFileDialog::AcceptOpen);
+    if(dialog.exec()) {
+        ui->actionSauvegarder->setEnabled(true);
+
+        QString selectedFile = dialog.selectedFiles().first();
+        openedFile->setFileName(selectedFile);
+        fileInfo->setFile(*openedFile);
+        openedFile->open(QIODevice::ReadWrite | QIODevice::Text);
+        setTreeView();
+        readFile(selectedFile);
+        setWindowTitle("Compilateur - "+openedFile->fileName());
+        mjjStep=0;
+        drawStackFromMemory(new Memory);
+        //std::cout << "DEBUG" << std::endl;
+        //openedFile->open(QIODevice::ReadWrite | QIODevice::Text);
+    }
+
+
+}
+
+void MainWindow::on_actionQuitter_triggered()
+{
+    this->close();
+}
+
+void MainWindow::on_actionCompiler_triggered()
+{
+    if(openedFile->exists() && openedFile->isOpen()){
+        ui->console->append("Compilation de " + fileInfo->fileName());
+        // QProcess process = new QProcess();
+        // http://www.qtfr.org/viewtopic.php?id=9275
+        /*int fileHandle = openedFile->handle();
+          FILE* file = fdopen(fileHandle, "r");*/
+        const char* filename = fileInfo->absoluteFilePath().toStdString().c_str();
+        FILE* file = fopen(filename, "r");
+        if(!file){
+            ui->console->append("Err: Le fichier " + fileInfo->absoluteFilePath() + " n'existe pas.");
+        }else{
+            MJJProgram mjjprogram(filename);
+            TypeChecker typeChecker;
+            typeChecker.checkProgram(mjjprogram);
+
+            //===================================================================//
+            // Le contrôleur de types n'a trouvé aucun défaut
+            //===================================================================//
+            if(!typeChecker.errorsFound()){
+                Compiler::compile(mjjprogram, "compiled");
+                FILE* file2 = fopen("compiled.jjc", "r");
+                if(file2) {
+                    QTextStream fileStream(file2);
+                    ui->textZone2->setPlainText(fileStream.readAll());
+                    fclose(file2);
+                }
+            }
+            //===================================================================//
+            fclose(file);
+        }
+    } else {
+        ui->console->append("Err: Veuillez ouvrir un fichier.");
+        return;
+    }
+    mjjStep=0;
+}
+
+void MainWindow::on_actionExecuter_triggered()
+{
+    if(openedFile->exists() && openedFile->isOpen()){
+        ui->console->append("Execution direct de " + fileInfo->fileName());
+        const char* filename = fileInfo->absoluteFilePath().toStdString().c_str();
+        FILE* file = fopen(filename, "r");
+        if(!file){
+            ui->console->append("Err: Le fichier " + fileInfo->absoluteFilePath() + " n'existe pas.");
+        }else{
+            MJJProgram mjjprogram(filename);
+            TypeChecker typeChecker;
+            typeChecker.checkProgram(mjjprogram);
+            if(!typeChecker.errorsFound()){
+                Interpreter::interpretProgram(mjjprogram);
+                drawStackFromMemory(Interpreter::getMemory());
+            }
+            fclose(file);
+        }
+    } else {
+        ui->console->append("Err: Veuillez ouvrir un fichier.");
+        return;
+    }
+    mjjStep=0;
+}
+
+
+void MainWindow::on_actionFermer_triggered()
+{
+    if(openedFile->exists() && openedFile->isOpen()) {
+        openedFile->close();
+        ui->actionSauvegarder->setDisabled(true);
+        ui->textZone->clear();
+        ui->textZone2->clear();
+        ui->console->append("Fermeture de " + fileInfo->fileName());
+    }
+    mjjStep=0;
+    drawStackFromMemory(new Memory);
+    setWindowTitle("Compilateur MiniJaJa");
+}
+
+void MainWindow::on_actionSauvegarder_sous_triggered()
+{
+    QFileDialog dialog(this);
+    dialog.setFileMode(QFileDialog::AnyFile);
+    dialog.setAcceptMode(QFileDialog::AcceptSave);
+    //QString selectedFile = dialog.getSaveFileName();
+    if(dialog.exec()) {
+        ui->actionSauvegarder->setEnabled(true);
+
+        if(openedFile->isOpen()) openedFile->close();
+        openedFile->setFileName(dialog.selectedFiles().first());
+        fileInfo->setFile(*openedFile);
+        if(openedFile->open(QIODevice::ReadWrite | QIODevice::Text)) {
+            QString contentFile = ui->textZone->toPlainText();
+            openedFile->write(contentFile.toStdString().c_str());
+            ui->console->append("Fichier sauvegarde");
+            mjjStep=0;
+            drawStackFromMemory(new Memory);
+            setWindowTitle("Compilateur - "+openedFile->fileName());
+        } else {
+            ui->console->append("Impossible de sauvegarder");
+        }
+        openedFile->close();    // Ecriture dans le fichier effective lors de la fermeture
+        openedFile->open(QIODevice::ReadWrite | QIODevice::Text);
+    }
+}
+
+void MainWindow::on_actionSauvegarder_triggered()
+{
+    if(openedFile->isOpen()) openedFile->close();
+    openedFile->open(QIODevice::ReadWrite | QIODevice::Truncate | QIODevice::Text);
+    QString contentFile = ui->textZone->toPlainText();
+    openedFile->reset();
+    if(openedFile->write(contentFile.toStdString().c_str())){
+        ui->console->append("Fichier sauvegarde");
+    }else{
+        ui->console->append(QString::fromUtf8("Echec d'écriture"));
+    }
+    openedFile->close();
+    openedFile->open(QIODevice::ReadWrite | QIODevice::Text);
+    mjjStep=0;
+}
+
+
+void MainWindow::on_actionNouveau_Fichier_triggered()
+{
+    ui->textZone->clear();
+    ui->actionSauvegarder->setDisabled(true);
+    ui->console->append("Creation d'un nouveau fichier");
+    //QString contentFile = ui->textZone->toPlainText();
+    on_actionSauvegarder_sous_triggered();
+}
+
+
+void MainWindow::drawStackFromMemory(Memory* mem) {
+    Stack<Quadruplet*>* stack = mem->getStack();
+    QString openTable = "<table border=\"1\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px;\" width=\"100%\" cellspacing=\"2\" cellpadding=\"0\">";
+    QString topTableRow = "<tr><td><p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt;\">";
+    QString botTableRow = "</span></p></td></tr>";
+    QString closeTable = "</table>";
+
+    QString finalHTML = "";
+    finalHTML += openTable;
+
+    LinkedList<Quadruplet*>* ll = stack->getLinkedList();
+    int llLength = ll->getLength();
+
+    for (int i = 0; i < llLength; ++i) {
+        Quadruplet* current = ll->elementAt(i)->getValue();
+        finalHTML = finalHTML + topTableRow;
+        finalHTML = finalHTML + "( " + QString::fromStdString(current->getIdentifier());
+        finalHTML = finalHTML + ", " + QString::number(current->getValue());
+        finalHTML = finalHTML + ", " + stringFromKind(current->getKind());
+        finalHTML = finalHTML + ", " + stringFromType(current->getType());
+        finalHTML = finalHTML + " )";
+        finalHTML = finalHTML + botTableRow + "\n";
+    }
+    finalHTML.append(closeTable);
+
+    ui->textMemo->setText(finalHTML);
+}
+
+void MainWindow::on_actionExecuter_JJC_triggered()
+{
+    // TODO
+    //KEVIN ET SIDIKI HERE
+    if(openedFile->exists() && openedFile->isOpen()){
+        ui->console->append("Execution de " + fileInfo->fileName());
+        const char* filename = fileInfo->absoluteFilePath().toStdString().c_str();
+        FILE* file = fopen(filename, "r");
+        if(!file){
+            ui->console->append("Err: Le fichier " + fileInfo->absoluteFilePath() + " n'existe pas.");
+        }else{
+            JJCProgram jjcprogram("compiled.jjc");
+            Interpreter::interpretProgram(jjcprogram);
+            //drawStackFromMemory(Interpreter::getMemory());
+            fclose(file);
+        }
+    } else {
+        ui->console->append("Err: Veuillez ouvrir un fichier.");
+        return;
+    }
+    mjjStep=0;
+}
+
+void MainWindow::on_ExecutePasAPasMJJ_triggered()
+{
+    if(openedFile->exists() && openedFile->isOpen()){
+
+        const char* filename = fileInfo->absoluteFilePath().toStdString().c_str();
+        FILE* file = fopen(filename, "r");
+        if(!file){
+            ui->console->append("Err: Le fichier " + fileInfo->absoluteFilePath() + " n'existe pas.");
+        }else{
+            if(mjjStep == 0){
+                MJJProgram mjjprogram(filename);
+                TypeChecker typeChecker;
+                typeChecker.checkProgram(mjjprogram);
+                if(!typeChecker.errorsFound()){
+                    ui->console->append("Execution pas a pas direct de " + fileInfo->fileName());
+                    liste = Interpreter::interpretNode(mjjprogram.getRootNode(), 0);
+                    Interpreter::interpretNode(liste->elementAt(mjjStep)->getValue().first, liste->elementAt(mjjStep)->getValue().second);
+                    QString labelNode = QString::fromStdString(liste->elementAt(mjjStep)->getValue().first->getLabel());
+                    ui->console->append("Execution d'un noeud : "+labelNode);
+                }else{
+                    ui->console->append(QString::fromUtf8("Erreur trouvée."));
+                    mjjStep=-1;
+                }
+            }else{
+                if(mjjStep < liste->getLength()){
+                    Interpreter::interpretNode(liste->elementAt(mjjStep)->getValue().first, liste->elementAt(mjjStep)->getValue().second);
+                    QString labelNode = QString::fromStdString(liste->elementAt(mjjStep)->getValue().first->getLabel());
+                    if(liste->elementAt(mjjStep)->getValue().second == 4) {
+                        ui->console->append("Retrait d'un noeud' : " + labelNode);
+                    } else {
+                        ui->console->append("Execution d'un noeud : "+labelNode);
+                    }
+                }else{
+                    ui->console->append("Fin de l'interpretation pas a pas du programme.");
+                    mjjStep=-1;
+                }
+            }
+        drawStackFromMemory(Interpreter::getMemory());
+        mjjStep++;
+        fclose(file);
+        }
+    } else {
+        ui->console->append("Err: Veuillez ouvrir un fichier.");
+        return;
+    }
+}
+
+void MainWindow::on_ExecutePasAPasJJC_triggered()
+{
+    if(openedFile->exists() && openedFile->isOpen()){
+        ui->console->append("Execution pas a pas de " + fileInfo->fileName());
+        const char* filename = fileInfo->absoluteFilePath().toStdString().c_str();
+        FILE* file = fopen(filename, "r");
+        if(!file){
+            ui->console->append("Err: Le fichier " + fileInfo->absoluteFilePath() + " n'existe pas.");
+        }else{
+            JJCProgram jjcprogram("compiled.jjc");
+            //if(jjcFlag == 0){
+
+                jjcFlag = Interpreter::interpretProgramSS(jjcprogram,jjcFlag);
+                //drawStackFromMemory(Interpreter::getMemory());
+            /* }
+            else{
+                Interpreter::interpretProgramSS(jjcprogram,1);
+            }*/
+
+            fclose(file);
+        }
+    } else {
+        ui->console->append("Err: Veuillez ouvrir un fichier.");
+        return;
+    }
+    mjjStep=0;
+    jjcFlag++;
+}
+
+void MainWindow::on_actionArretMJJ_triggered()
+{
+    mjjStep=0;
+    drawStackFromMemory(new Memory);
+    ui->console->append("Interpretation pas a pas stopper.");
+   // Interpreter::resetMemory();
+}
+
+void MainWindow::on_actionArretJJC_triggered()
+{
+
+}
+
+void MainWindow::on_actionAnnuler_triggered()
+{
+    ui->textZone->undo();
+}
+
+void MainWindow::on_actionA_propos_triggered()
+{
+    QMessageBox about(this);
+    about.setWindowTitle(QString::fromUtf8("À propos"));
+    about.setText(QString::fromUtf8("<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN'" \
+                  "<HTML>"\
+                  "<HEAD>"\
+                  "<META HTTP-EQUIV='Content-Type' CONTENT='text/html;charset=iso-8859-1'>"\
+                  "<TITLE>A propos</TITLE>"\
+                  "</HEAD>"\
+                  "<style type='text/css'> "\
+                  " p, li { white-space: pre-wrap; }" \
+                  "</style>" \
+                  "<BODY style=' font-family:'Comic sans MS'; font-size:9pt; font-style:normal;'>"\
+                  "<p align='left' style=' margin-top:15px; margin-bottom:15px; margin-left:15px; margin-right:15px; -qt-block-indent:0;" \
+                  "text-indent:5px;'><span style=' font-size:10pt; '><ul><strong>Compilateur MiniJaJa : </strong>" \
+                  "<li style='margin-left: 20px;'>Version : 1.0 </li>" \
+                  "<li style='margin-left: 20px;'>Réalisé par : Abdelhamid Hammani, Coulibaly Sidiki, Laurent Kevin, Mariaux Cédric, Roze Nicolas, Voiron Guillaume. </li></ul><br>"\
+                  "</span></p>" \
+                  "</BODY>"\
+                  "</HTML>"));
+    about.exec();
+}
+
+void MainWindow::on_actionRestaurer_triggered()
+{
+    ui->textZone->redo();
+}
+
+void MainWindow::on_action800x600_triggered()
+{
+    this->resize(800, 600);
+}
+
+void MainWindow::on_action1080x720_triggered()
+{
+    this->resize(1080, 720);
+}

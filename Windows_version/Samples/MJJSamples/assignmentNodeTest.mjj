@@ -1,0 +1,12 @@
+class DivideNodeTest {
+    main {
+        int x=1;
+        int zero1 = 0;
+        int two1 = 2;
+        int error1 = 2 / x;
+        int one1 = 5 / 5;
+        int one2 = 2 / two1;
+        int one3 = two1 / 2;
+        int one4 = two1 / two1;
+    }
+}

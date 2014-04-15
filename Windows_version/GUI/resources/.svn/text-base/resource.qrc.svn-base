@@ -1,0 +1,23 @@
+<RCC>
+    <qresource prefix="/new/icons">
+        <file>1386189589_gtk-stop.png</file>
+        <file>1386189688_play.png</file>
+        <file>1386189806_step-forward.png</file>
+        <file>1386189830_start-here.png</file>
+        <file>1386189851_start.png</file>
+        <file>1386189852_Play1Hot.png</file>
+        <file>1386190814_compile.png</file>
+        <file>1386189806_step-forward2.png</file>
+        <file>1386189852_Play2Hot.png</file>
+        <file>1386824052_floppy_disk_save.png</file>
+        <file>1386824097_filesaveas.png</file>
+        <file>1386824125_document-new.png</file>
+        <file>1386824145_Open.png</file>
+        <file>1386824175_cross-24.png</file>
+        <file>1386824183_exit.png</file>
+        <file>1386824269_Undo.png</file>
+        <file>1386824300_Redo.png</file>
+        <file>1386824446_Information.png</file>
+        <file>1386824597_layer_resize.png</file>
+    </qresource>
+</RCC>

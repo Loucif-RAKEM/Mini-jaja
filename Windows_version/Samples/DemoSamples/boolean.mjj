@@ -1,0 +1,13 @@
+class test {
+	main {
+
+		int tab[5];
+		boolean tabBool[5];
+		int x = 5;
+		int i = 0;
+		while(x > i){
+			tabBool[i] = 1;
+			i++;
+		}; 		
+	}
+}

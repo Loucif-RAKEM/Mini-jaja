@@ -1,0 +1,16 @@
+class AndNodeTest {
+    main {
+        boolean faux1 = false && false;
+        boolean faux2 = false && true;
+        boolean faux3 = true && false;
+        boolean faux4 = false && faux1;
+        boolean faux5 = faux2 && true;
+        boolean faux6 = true && faux2;
+        boolean faux7 = faux5 && faux6;
+
+        boolean vrai1 = true && true;
+        boolean vrai2 = true && vrai1;
+        boolean vrai3 = vrai2 && vrai1;
+        boolean vrai4 = vrai2 && true;
+    }
+}

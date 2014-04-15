@@ -1,0 +1,11 @@
+class test {
+	main {
+		int x = 5;
+		int y = 0;
+		if(x>0 && y > 0){ 
+			x = 0;	  
+		}else{
+			y = 0;
+		}; 
+	}
+}

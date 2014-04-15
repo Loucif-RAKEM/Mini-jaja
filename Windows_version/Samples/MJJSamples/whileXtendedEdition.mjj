@@ -1,0 +1,21 @@
+class test {
+    main {
+        int x=2;
+        int y=3;
+        int z=4;
+        int a=5;
+        
+        while(x>1) {
+            while(y>1) {
+                while(z>1) {
+                    while(a>1) {
+                        a = a -1;
+                    };     
+                    z = z - 1;
+                };
+                y = y - 1;
+            };
+            x = x -1;
+        };
+    }
+}

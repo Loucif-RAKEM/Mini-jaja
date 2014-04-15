@@ -1,0 +1,16 @@
+class SumNodeTest {
+
+    main {
+        int zeroToSeven1 = 0;
+        int oneToThree1 = 1;
+        int two1 = 2;
+        oneToThree1 += 3;
+        oneToThree1 += -5;
+        oneToThree1 += two1;
+        oneToThree1 += two1;
+        zeroToSeven1 += oneToThree1;
+        zeroToSeven1 += 2;
+        zeroToSeven1 += two1;
+    }
+
+}

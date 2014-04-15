@@ -1,0 +1,26 @@
+class test{
+    int firstMeth(int x, int y) {
+    	if(x > y){
+        	return x + y;
+        }else{
+        	return x - y;
+        };
+    };
+    
+    int secondMeth(int x) {
+        return x + 1;
+    };
+    
+    main{
+        int tab[5];
+        int x = 0;
+        int y;
+        while(!x>5) {
+            tab[x] = secondMeth(x);
+            x++;
+        };
+         x = firstMeth(3,5);
+        y = tab[2] + tab[4] + firstMeth(tab[1], tab[3]);
+        tab[0] = y;
+    }
+}
